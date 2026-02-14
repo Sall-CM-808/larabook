@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #475569;
+    }
+}
+
+@layer components {
+    /* Pagination styling */
+    nav[aria-label="Pagination Navigation"] span,
+    nav[aria-label="Pagination Navigation"] a {
+        @apply bg-slate-900 border-white/10 text-slate-400 text-sm;
+    }
+    nav[aria-label="Pagination Navigation"] span[aria-current="page"] span {
+        @apply bg-indigo-600 border-indigo-600 text-white;
+    }
+    nav[aria-label="Pagination Navigation"] a:hover {
+        @apply bg-white/5 text-white;
+    }
+}
