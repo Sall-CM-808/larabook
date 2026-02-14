@@ -31,6 +31,8 @@ RUN composer install --no-dev --optimize-autoloader \
     && php artisan storage:link || true \
     && chmod -R 775 storage bootstrap/cache
 
+RUN chmod +x /app/start.sh
+
 EXPOSE 10000
 
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-10000} -t public public/index.php"]
+CMD ["/app/start.sh"]
