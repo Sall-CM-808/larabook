@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
 
@@ -22,6 +22,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Request::setTrustedProxies(['*'], Request::HEADER_X_FORWARDED_ALL);
+
+        $appUrl = (string) config('app.url');
+        if ($appUrl !== '') {
+            URL::forceRootUrl($appUrl);
+            if (str_starts_with($appUrl, 'https://')) {
+                URL::forceScheme('https');
+            }
+        }
 
         if (! $this->app->runningInConsole()) {
             $proto = request()->header('x-forwarded-proto');
