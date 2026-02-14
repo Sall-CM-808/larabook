@@ -17,4 +17,4 @@ if [ -z "${APP_KEY:-}" ]; then
 fi
 
 echo "[start] starting php server"
-exec php -S 0.0.0.0:${PORT:-10000} router.php
+exec php -S 0.0.0.0:${PORT:-10000} -t public router.php
